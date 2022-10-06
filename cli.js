@@ -33,7 +33,7 @@ if (args.d){
     days = args.d;
 }
 
-if (data.daily.precipitation_hours[days] > 0){
+if (actualJson.daily.precipitation_hours[days] > 0){
     console.log ("You probably will need your galoshes ");
 } else {
     console.log ("You won't need your galoshes ");
