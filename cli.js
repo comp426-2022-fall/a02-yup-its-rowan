@@ -33,17 +33,20 @@ if (args.d){
     days = args.d;
 }
 
+var printText = "";
+
 if (actualJson.daily.precipitation_hours[days] > 0){
-    console.log ("You probably will need your galoshes ");
+    printText = "You probably will need your galoshes ";
 } else {
-    console.log ("You won't need your galoshes ");
+    printText = "You won't need your galoshes ";
 }
 
 if (days == 0) {
-    console.log("today.")
-  } else if (days > 1) {
-    console.log("in " + days + " days.")
-  } else {
-    console.log("tomorrow.")
-  }
+    printText += "today.";
+} else if (days > 1) {
+    printText += "in " + days + " days.";
+} else {
+    printText += "tomorrow.";
+}
 
+console.log (printText);
