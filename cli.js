@@ -12,7 +12,14 @@ if (args.h){ // \n'd the stuff because i hate readability and also because it ma
     process.exit(0); //its done its job already, get outa here
 }
 
-const timezone = moment.tz.guess(); //not guest, its guess
+
+
+var timezone = moment.tz.guess(); //not guest, its guess
+
+if (args.z){
+    timezone = args.z;
+
+}    
 
 var latitude = 0; //initialize JIC its freaky deaky
 var longitude = 0;
@@ -28,7 +35,12 @@ const actualResponse = await fetch(`https://api.open-meteo.com/v1/forecast?latit
 
 const actualJson = await(actualResponse).json();
 
-const days = 1; //default to 1
+if(args.j){
+    console.log(actualJson);
+    process.exit(0);
+}
+
+var days = 1; //default to 1
 if (args.d){
     days = args.d;
 }
