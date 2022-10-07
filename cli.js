@@ -23,8 +23,21 @@ if (args.z){
 
 var latitude = 0; //initialize JIC its freaky deaky
 var longitude = 0;
-latitude = args.n || -args.s; //negatives and positives such as in the help message
-longitude = args.e || -args.w;
+if (args.n != null){
+    latitude = args.n; //negatives and positives such as in the help message
+}
+
+if (args.s != null){
+    latitude = -args.s;
+}
+
+if (args.e != null){
+    longitude = args.e;
+}
+
+if (args.w != null){
+    longitude = -args.w;
+}
 
 //let response = "https://api.open"
 
@@ -41,16 +54,16 @@ if(args.j){
 }
 
 var days = 1; //default to 1
-if (args.d){
+if (args.d != null){
     days = args.d;
 }
 
 var printText = "";
 
 if (actualJson.daily.precipitation_hours[days] > 0){
-    printText = "You probably will need your galoshes ";
+    printText += "You probably will need your galoshes ";
 } else {
-    printText = "You won't need your galoshes ";
+    printText += "You won't need your galoshes ";
 }
 
 if (days == 0) {
