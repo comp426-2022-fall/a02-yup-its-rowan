@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 import minimist from 'minimist';
 
 
-const args = minimist(process.argv.slice(2));
+var args = minimist(process.argv.slice(2));
 
 if (args.h){ // \n'd the stuff because i hate readability and also because it makes more sense than multiple consolelogs
     console.log ("Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE\n-h            Show this help message and exit.\n-n, -s        Latitude: N positive; S negative.\n-e, -w        Longitude: E positive; W negative.\n-z            Time zone: uses tz.guess() from moment-timezone by default.\n-d 0-6        Day to retrieve weather: 0 is today; defaults to 1.\n-j            Echo pretty JSON from open-meteo API and exit.");
@@ -23,20 +23,24 @@ if (args.z){
 
 var latitude = 0; //initialize JIC its freaky deaky
 var longitude = 0;
-if (args.n != null){
-    latitude = args.n; //negatives and positives such as in the help message
+if (args.n && args.s){
+    console.log("You can't have both N&S"); 
+} else {
+    if (args.n != null){
+        latitude = args.n; //negatives and positives such as in the help message
+    } else if (args.s != null){
+        latitude = -args.s;
+    }
 }
 
-if (args.s != null){
-    latitude = -args.s;
-}
-
-if (args.e != null){
-    longitude = args.e;
-}
-
-if (args.w != null){
-    longitude = -args.w;
+if (args.e && args.w){
+    console.log("You can't have both E&W");
+} else {
+    if (args.e != null){
+        longitude = args.e;
+    } else if (args.w != null){
+        longitude = -args.w;
+    }
 }
 
 //let response = "https://api.open"
