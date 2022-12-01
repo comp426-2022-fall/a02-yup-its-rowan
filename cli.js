@@ -25,20 +25,22 @@ var latitude = 0; //initialize JIC its freaky deaky
 var longitude = 0;
 if (args.n && args.s){
     console.log("You can't have both N&S"); 
+    process.exit(1);
 } else {
     if (args.n != null){
         latitude = args.n; //negatives and positives such as in the help message
-    } else if (args.s != null){
+    } else {
         latitude = -args.s;
     }
 }
 
 if (args.e && args.w){
     console.log("You can't have both E&W");
+    process.exit(1);
 } else {
     if (args.e != null){
         longitude = args.e;
-    } else if (args.w != null){
+    } else {
         longitude = -args.w;
     }
 }
